@@ -34,7 +34,6 @@ public class EmojiCommand implements CommandExecutor {
 
                 }
             }
-
         }
         return true;
     }
