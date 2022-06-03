@@ -1,0 +1,11 @@
+name: EmojiPlugin
+version: '${project.version}'
+main: liven.emojiplugin.EmojiPlugin
+api-version: 1.18
+authors: [ Liven ]
+description: Emoji Plugin
+commands:
+  emoji:
+    description: Main command for emoji plugin
+    usage: /<command> <arg1>
+    permission: emojiplugin.command.emoji
