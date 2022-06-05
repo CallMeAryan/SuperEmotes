@@ -3,9 +3,9 @@ version: '${project.version}'
 main: liven.emojiplugin.EmojiPlugin
 api-version: 1.18
 authors: [ Liven ]
-description: Emoji Plugin
+description: Simple Plugin adds Animated Emotes
 commands:
-  emoji:
-    description: Main command for emoji plugin
+  emotes:
+    description: Main command for emotes plugin
     usage: /<command> <arg1>
-    permission: emojiplugin.command.emoji
+    permission: emotesplugin.command.emotes

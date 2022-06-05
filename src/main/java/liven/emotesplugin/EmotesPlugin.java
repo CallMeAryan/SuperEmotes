@@ -1,7 +1,7 @@
 package liven.emotesplugin;
 
-import liven.emojiplugin.Commands.EmotesCommand;
-import liven.emojiplugin.Utils.RepeatingTask;
+import liven.emotesplugin.Commands.EmotesCommand;
+import liven.emotesplugin.Utils.RepeatingTask;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -14,7 +14,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.*;
 
-import static liven.emojiplugin.Utils.getCustomSkull.createCustomSkull;
+import static liven.emotesplugin.Utils.getCustomSkull.createCustomSkull;
 
 public final class EmotesPlugin extends JavaPlugin implements Listener {
     public static boolean isEnabled = false;
@@ -35,7 +35,7 @@ public final class EmotesPlugin extends JavaPlugin implements Listener {
 
         Bukkit.getPluginManager().registerEvents(this, this);
         getLogger().info(ChatColor.GREEN + "plugin enabled successfully");
-        this.getCommand("emoji").setExecutor(new EmotesCommand());
+        this.getCommand("emotes").setExecutor(new EmotesCommand());
 
 
     }
