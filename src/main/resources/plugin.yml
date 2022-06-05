@@ -1,4 +1,4 @@
-name: EmojiPlugin
+name: EmotesPlugin
 version: '${project.version}'
 main: liven.emotesplugin.EmotesPlugin
 api-version: 1.18
