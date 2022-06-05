@@ -1,1 +1,1 @@
-# EmojiPlugin
+# EmotesPlugin
