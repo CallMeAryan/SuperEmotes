@@ -1,7 +1,6 @@
-package liven.emojiplugin;
+package liven.emotesplugin;
 
-import com.mojang.util.UUIDTypeAdapter;
-import liven.emojiplugin.Commands.EmojiCommand;
+import liven.emojiplugin.Commands.EmotesCommand;
 import liven.emojiplugin.Utils.RepeatingTask;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -12,13 +11,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitTask;
 
 import java.util.*;
 
 import static liven.emojiplugin.Utils.getCustomSkull.createCustomSkull;
 
-public final class EmojiPlugin extends JavaPlugin implements Listener {
+public final class EmotesPlugin extends JavaPlugin implements Listener {
     public static boolean isEnabled = false;
     public static boolean isUp = true;
     public static int _Emojinumber = 0;
@@ -33,9 +31,11 @@ public final class EmojiPlugin extends JavaPlugin implements Listener {
 
         EnabledEmojis.forEach(uuidd -> System.out.println("::::::::::::::::::::::::::::::" + uuidd));
 
+
+
         Bukkit.getPluginManager().registerEvents(this, this);
         getLogger().info(ChatColor.GREEN + "plugin enabled successfully");
-        this.getCommand("emoji").setExecutor(new EmojiCommand());
+        this.getCommand("emoji").setExecutor(new EmotesCommand());
 
 
     }
@@ -56,15 +56,18 @@ public final class EmojiPlugin extends JavaPlugin implements Listener {
 
                 if (isEnabled) {
                     if (isUp && _Emojinumber == 1) {
-                        player.getInventory().setHelmet(createCustomSkull(1, "idk", Collections.singletonList("idk"), "uc?id=1d4CsPPchGVm4fYhTt9bX8vs2MWqx9Dz2&export=download"));
+                        player.getInventory().setHelmet(createCustomSkull(1, "idk", Collections.singletonList("idk"), "80546009349781f548ba9ac1118efeca00a7d27ed79e53e4d54dfd218f9b694b"));
                         isUp = false;
                     } else if (!isUp && _Emojinumber == 1) {
-                        player.getInventory().setHelmet(air);
+                        player.getInventory().setHelmet(createCustomSkull(1, "idk", Collections.singletonList("idk"), "52e98165deef4ed621953921c1ef817dc638af71c1934a4287b69d7a31f6b8"));
                         isUp = true;
-                    } else {
-
+                    } else if  (isUp && _Emojinumber == 2) {
+                        player.getInventory().setHelmet(createCustomSkull(1, "idk", Collections.singletonList("idk"), "2a1898b4147c6f7137b256fb468640738fdae532692b90e4e9ef2e62976c7a7d"));
+                        isUp = false;
+                    } else if (!isUp && _Emojinumber == 2) {
+                        player.getInventory().setHelmet(createCustomSkull(1, "idk", Collections.singletonList("idk"), "705682eb2f96e76aa7a4e44ae3d54f519f3485f6beedeab0d0d889aaa5e3ecb8"));
+                        isUp = true;
                     }
-                } else {
                 }
             }
         };

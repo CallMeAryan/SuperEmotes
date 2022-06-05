@@ -1,4 +1,4 @@
-package liven.emojiplugin.Utils;
+package liven.emotesplugin.Utils;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
@@ -19,7 +19,7 @@ public class getCustomSkull {
 
 
     public static ItemStack createCustomSkull(int amount, String displayName, List<String> lore, String texture) {
-        texture = "https://drive.google.com/u/0/" + texture;
+        texture = "http://textures.minecraft.net/texture/" + texture;
 
         ItemStack skull = new ItemStack(Material.PLAYER_HEAD);
         if (texture.isEmpty()) {
