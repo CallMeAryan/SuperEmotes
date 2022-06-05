@@ -1,6 +1,6 @@
 name: EmojiPlugin
 version: '${project.version}'
-main: liven.emojiplugin.EmojiPlugin
+main: liven.emotesplugin.EmotesPlugin
 api-version: 1.18
 authors: [ Liven ]
 description: Simple Plugin adds Animated Emotes
