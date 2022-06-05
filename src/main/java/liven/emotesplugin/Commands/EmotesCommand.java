@@ -9,8 +9,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import static liven.emotesplugin.EmotesPlugin._Emojinumber;
-import static liven.emotesplugin.EmotesPlugin.isEnabled;
+import javax.swing.plaf.IconUIResource;
+import java.util.UUID;
+
+import static liven.emotesplugin.EmotesPlugin.*;
 
 public class EmotesCommand implements CommandExecutor {
 
@@ -28,135 +30,64 @@ public class EmotesCommand implements CommandExecutor {
             } else if (args.length == 1 && args[0].equalsIgnoreCase("1")) {
 
 
-                if (!isEnabled) {
-                    _Emojinumber = 1;
-                    player.sendMessage(ChatColor.GREEN + "Enabled 1" + _Emojinumber);
-                    isEnabled = true;
-
-                } else {
-                    _Emojinumber = 0;
-                    ItemStack air = new ItemStack(Material.AIR);
-                    player.getInventory().setHelmet(air);
-                    player.sendMessage(ChatColor.RED + "Disabled" + _Emojinumber);
-                    isEnabled = false;
-
-                }
+                dic.put(player.getDisplayName(), 1);
+                EnabledEmojis.add(player.getUniqueId());
 
 
             }else if (args.length == 1 && args[0].equalsIgnoreCase("2")) {
 
 
-                if (!isEnabled) {
-                    _Emojinumber = 2;
-                    player.sendMessage(ChatColor.GREEN + "Enabled " + _Emojinumber);
-                    isEnabled = true;
+                dic.put(player.getDisplayName(), 2);
+                EnabledEmojis.add(player.getUniqueId());
 
-                } else {
-                    _Emojinumber = 0;
-                    ItemStack air = new ItemStack(Material.AIR);
-                    player.getInventory().setHelmet(air);
-                    player.sendMessage(ChatColor.RED + "Disabled" + _Emojinumber);
-                    isEnabled = false;
 
-                }
         }else if (args.length == 1 && args[0].equalsIgnoreCase("3")) {
 
 
-                if (!isEnabled) {
-                    _Emojinumber = 3;
-                    player.sendMessage(ChatColor.GREEN + "Enabled " + _Emojinumber);
-                    isEnabled = true;
+                dic.put(player.getDisplayName(), 3);
+                EnabledEmojis.add(player.getUniqueId());
 
-                } else {
-                    _Emojinumber = 0;
-                    ItemStack air = new ItemStack(Material.AIR);
-                    player.getInventory().setHelmet(air);
-                    player.sendMessage(ChatColor.RED + "Disabled" + _Emojinumber);
-                    isEnabled = false;
 
-                }
             }else if (args.length == 1 && args[0].equalsIgnoreCase("4")) {
 
 
-                if (!isEnabled) {
-                    _Emojinumber = 4;
-                    player.sendMessage(ChatColor.GREEN + "Enabled " + _Emojinumber);
-                    isEnabled = true;
+                dic.put(player.getDisplayName(), 4);
+                EnabledEmojis.add(player.getUniqueId());
 
-                } else {
-                    _Emojinumber = 0;
-                    ItemStack air = new ItemStack(Material.AIR);
-                    player.getInventory().setHelmet(air);
-                    player.sendMessage(ChatColor.RED + "Disabled" + _Emojinumber);
-                    isEnabled = false;
 
-                }
             }else if (args.length == 1 && args[0].equalsIgnoreCase("5")) {
 
 
-                if (!isEnabled) {
-                    _Emojinumber = 5;
-                    player.sendMessage(ChatColor.GREEN + "Enabled " + _Emojinumber);
-                    isEnabled = true;
+                dic.put(player.getDisplayName(), 5);
+                EnabledEmojis.add(player.getUniqueId());
 
-                } else {
-                    _Emojinumber = 0;
-                    ItemStack air = new ItemStack(Material.AIR);
-                    player.getInventory().setHelmet(air);
-                    player.sendMessage(ChatColor.RED + "Disabled" + _Emojinumber);
-                    isEnabled = false;
 
-                }
             }else if (args.length == 1 && args[0].equalsIgnoreCase("6")) {
 
 
-                if (!isEnabled) {
-                    _Emojinumber = 6;
-                    player.sendMessage(ChatColor.GREEN + "Enabled " + _Emojinumber);
-                    isEnabled = true;
+                dic.put(player.getDisplayName(), 6);
+                EnabledEmojis.add(player.getUniqueId());
 
-                } else {
-                    _Emojinumber = 0;
-                    ItemStack air = new ItemStack(Material.AIR);
-                    player.getInventory().setHelmet(air);
-                    player.sendMessage(ChatColor.RED + "Disabled" + _Emojinumber);
-                    isEnabled = false;
 
-                }
             }else if (args.length == 1 && args[0].equalsIgnoreCase("7")) {
 
 
-                if (!isEnabled) {
-                    _Emojinumber = 7;
-                    player.sendMessage(ChatColor.GREEN + "Enabled " + _Emojinumber);
-                    isEnabled = true;
+                dic.put(player.getDisplayName(), 7);
+                EnabledEmojis.add(player.getUniqueId());
 
-                } else {
-                    _Emojinumber = 0;
-                    ItemStack air = new ItemStack(Material.AIR);
-                    player.getInventory().setHelmet(air);
-                    player.sendMessage(ChatColor.RED + "Disabled" + _Emojinumber);
-                    isEnabled = false;
 
-                }
             }else if (args.length == 1 && args[0].equalsIgnoreCase("8")) {
 
 
-                if (!isEnabled) {
-                    _Emojinumber = 8;
-                    player.sendMessage(ChatColor.GREEN + "Enabled " + _Emojinumber);
-                    isEnabled = true;
+                dic.put(player.getDisplayName(), 8);
+                EnabledEmojis.add(player.getUniqueId());
 
-                } else {
-                    _Emojinumber = 0;
-                    ItemStack air = new ItemStack(Material.AIR);
-                    player.getInventory().setHelmet(air);
-                    player.sendMessage(ChatColor.RED + "Disabled" + _Emojinumber);
-                    isEnabled = false;
 
-                }
             } else {
-                player.sendMessage(ChatColor.RED + "Invalid Emoji");
+
+                dic.put(player.getDisplayName(), 0);
+                ItemStack air = new ItemStack(Material.AIR);
+                player.getInventory().setHelmet(air);
 
             }
     }

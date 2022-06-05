@@ -2,15 +2,22 @@ package liven.emotesplugin;
 
 import liven.emotesplugin.Commands.EmotesCommand;
 import liven.emotesplugin.Utils.RepeatingTask;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
+import net.minecraft.world.inventory.Slot;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryInteractEvent;
+import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.util.Vector;
 
 import java.util.*;
 
@@ -18,8 +25,10 @@ import static liven.emotesplugin.Utils.getCustomSkull.createCustomSkull;
 
 public final class EmotesPlugin extends JavaPlugin implements Listener {
     public static boolean isEnabled = false;
-    public static boolean isUp = true;
+    public boolean isUp = true;
+    public static HashMap<String, Boolean> PlayerBoolean = new HashMap<String, Boolean>();
     public static int _Emojinumber = 0;
+    public static  Dictionary<String, Integer> dic = new Hashtable<String, Integer>();
     public static List<UUID> EnabledEmojis = new ArrayList<UUID>();
 
     @Override
@@ -27,9 +36,55 @@ public final class EmotesPlugin extends JavaPlugin implements Listener {
 
 
 
+        RepeatingTask repeatingTask = new RepeatingTask(0, 10) {
+            @Override
+            public void run() {
 
 
-        EnabledEmojis.forEach(uuidd -> System.out.println("::::::::::::::::::::::::::::::" + uuidd));
+
+                //loop through all UUIDs present in Array list
+                EnabledEmojis.forEach(uuidd ->{
+
+                            Player player = Bukkit.getPlayer(uuidd);
+
+
+                            if(player != null){
+                                String DisplayName = player.getDisplayName();
+
+
+                                if(dic.get(DisplayName) == 1 ){
+                                    if (PlayerBoolean.get(player.getDisplayName())) {
+                                        player.getInventory().setHelmet(createCustomSkull(1, "idk", Collections.singletonList("idk"), "80546009349781f548ba9ac1118efeca00a7d27ed79e53e4d54dfd218f9b694b"));
+                                        PlayerBoolean.put(player.getName(), false);
+                                    } else {
+                                        player.getInventory().setHelmet(createCustomSkull(1, "idk", Collections.singletonList("idk"), "52e98165deef4ed621953921c1ef817dc638af71c1934a4287b69d7a31f6b8"));
+                                        PlayerBoolean.put(player.getName(), true);
+                                    }
+                                } else if(dic.get(DisplayName) == 2){
+
+
+                                    if (PlayerBoolean.get(player.getDisplayName())) {
+                                        player.getInventory().setHelmet(createCustomSkull(1, "idk", Collections.singletonList("idk"), "2a1898b4147c6f7137b256fb468640738fdae532692b90e4e9ef2e62976c7a7d"));
+                                        PlayerBoolean.put(player.getName(), false);
+                                    } else {
+                                        player.getInventory().setHelmet(createCustomSkull(1, "idk", Collections.singletonList("idk"), "705682eb2f96e76aa7a4e44ae3d54f519f3485f6beedeab0d0d889aaa5e3ecb8"));
+                                        PlayerBoolean.put(player.getName(), true);
+                                    }
+                                }
+
+
+                            }
+
+
+
+
+                        }
+                        );
+
+            }
+        };
+
+
 
 
 
@@ -50,11 +105,37 @@ public final class EmotesPlugin extends JavaPlugin implements Listener {
         ItemStack air = new ItemStack(Material.AIR);
         Player player = e.getPlayer();
 
-        RepeatingTask repeatingTask = new RepeatingTask(0, 20) {
+        //sets player bool to true
+
+        PlayerBoolean.put(player.getName(), true);
+
+        double PlaX = player.getLocation().toVector().getX();
+        double PlaY = player.getLocation().toVector().getY();
+        double PlaZ = player.getLocation().toVector().getZ();
+
+        RepeatingTask repeatingTask = new RepeatingTask(0, 10) {
             @Override
             public void run() {
 
                 if (isEnabled) {
+
+                    if(_Emojinumber == 1){
+                        Vector playerloc = player.getLocation().toVector();
+
+                        player.spawnParticle(Particle.HEART, playerloc.getX() + 1, playerloc.getY(), playerloc.getZ(), 1);
+                        player.spawnParticle(Particle.HEART, playerloc.getX() + 1.3, playerloc.getY(), playerloc.getZ(), 1);
+                    } else if (_Emojinumber == 2){
+                        player.spawnParticle(Particle.REDSTONE, PlaX + 1, PlaY + 1, PlaZ + 1, 1);
+                        player.spawnParticle(Particle.REDSTONE, PlaX + 2, PlaY + 2, PlaZ + 2, 1);
+                    } else {
+
+                    }
+
+
+
+
+
+
                     if (isUp && _Emojinumber == 1) {
                         player.getInventory().setHelmet(createCustomSkull(1, "idk", Collections.singletonList("idk"), "80546009349781f548ba9ac1118efeca00a7d27ed79e53e4d54dfd218f9b694b"));
                         isUp = false;
@@ -108,5 +189,29 @@ public final class EmotesPlugin extends JavaPlugin implements Listener {
             }
         };
     }
+    
+    @EventHandler (priority = EventPriority.HIGHEST)
+    public void onPlayerInteract(InventoryInteractEvent e){
+
+        Player player = (Player) e.getWhoClicked();
+        ItemStack hel = player.getInventory().getHelmet();
+        if (e.getInventory().getType() == InventoryType.PLAYER){
+
+            if (player.getInventory().getHelmet() != null){
+
+
+                e.setCancelled(true);
+                if (player.getInventory().getHelmet() != null){
+                    if(player.getInventory().getHelmet().getItemMeta().getDisplayName().contains("idk")){
+
+                    }
+                }
+            }
+
+        }
+
+
+}
+
 }
 
