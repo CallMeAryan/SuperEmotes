@@ -24,7 +24,7 @@ public class EmotesCommand implements CommandExecutor {
 
             if (args.length == 1 && args[0].equalsIgnoreCase("help")) {
 
-                player.sendMessage(ChatColor.GREEN + " ");
+                player.sendMessage(ChatColor.GREEN + "Choose between 1-8! Eg. /emotes 5");
             } else if (args.length == 1 && args[0].equalsIgnoreCase("1")) {
 
 
@@ -59,7 +59,103 @@ public class EmotesCommand implements CommandExecutor {
                     isEnabled = false;
 
                 }
-        } else {
+        }else if (args.length == 1 && args[0].equalsIgnoreCase("3")) {
+
+
+                if (!isEnabled) {
+                    _Emojinumber = 3;
+                    player.sendMessage(ChatColor.GREEN + "Enabled " + _Emojinumber);
+                    isEnabled = true;
+
+                } else {
+                    _Emojinumber = 0;
+                    ItemStack air = new ItemStack(Material.AIR);
+                    player.getInventory().setHelmet(air);
+                    player.sendMessage(ChatColor.RED + "Disabled" + _Emojinumber);
+                    isEnabled = false;
+
+                }
+            }else if (args.length == 1 && args[0].equalsIgnoreCase("4")) {
+
+
+                if (!isEnabled) {
+                    _Emojinumber = 4;
+                    player.sendMessage(ChatColor.GREEN + "Enabled " + _Emojinumber);
+                    isEnabled = true;
+
+                } else {
+                    _Emojinumber = 0;
+                    ItemStack air = new ItemStack(Material.AIR);
+                    player.getInventory().setHelmet(air);
+                    player.sendMessage(ChatColor.RED + "Disabled" + _Emojinumber);
+                    isEnabled = false;
+
+                }
+            }else if (args.length == 1 && args[0].equalsIgnoreCase("5")) {
+
+
+                if (!isEnabled) {
+                    _Emojinumber = 5;
+                    player.sendMessage(ChatColor.GREEN + "Enabled " + _Emojinumber);
+                    isEnabled = true;
+
+                } else {
+                    _Emojinumber = 0;
+                    ItemStack air = new ItemStack(Material.AIR);
+                    player.getInventory().setHelmet(air);
+                    player.sendMessage(ChatColor.RED + "Disabled" + _Emojinumber);
+                    isEnabled = false;
+
+                }
+            }else if (args.length == 1 && args[0].equalsIgnoreCase("6")) {
+
+
+                if (!isEnabled) {
+                    _Emojinumber = 6;
+                    player.sendMessage(ChatColor.GREEN + "Enabled " + _Emojinumber);
+                    isEnabled = true;
+
+                } else {
+                    _Emojinumber = 0;
+                    ItemStack air = new ItemStack(Material.AIR);
+                    player.getInventory().setHelmet(air);
+                    player.sendMessage(ChatColor.RED + "Disabled" + _Emojinumber);
+                    isEnabled = false;
+
+                }
+            }else if (args.length == 1 && args[0].equalsIgnoreCase("7")) {
+
+
+                if (!isEnabled) {
+                    _Emojinumber = 7;
+                    player.sendMessage(ChatColor.GREEN + "Enabled " + _Emojinumber);
+                    isEnabled = true;
+
+                } else {
+                    _Emojinumber = 0;
+                    ItemStack air = new ItemStack(Material.AIR);
+                    player.getInventory().setHelmet(air);
+                    player.sendMessage(ChatColor.RED + "Disabled" + _Emojinumber);
+                    isEnabled = false;
+
+                }
+            }else if (args.length == 1 && args[0].equalsIgnoreCase("8")) {
+
+
+                if (!isEnabled) {
+                    _Emojinumber = 8;
+                    player.sendMessage(ChatColor.GREEN + "Enabled " + _Emojinumber);
+                    isEnabled = true;
+
+                } else {
+                    _Emojinumber = 0;
+                    ItemStack air = new ItemStack(Material.AIR);
+                    player.getInventory().setHelmet(air);
+                    player.sendMessage(ChatColor.RED + "Disabled" + _Emojinumber);
+                    isEnabled = false;
+
+                }
+            } else {
                 player.sendMessage(ChatColor.RED + "Invalid Emoji");
 
             }

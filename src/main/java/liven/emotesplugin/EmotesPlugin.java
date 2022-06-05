@@ -67,6 +67,42 @@ public final class EmotesPlugin extends JavaPlugin implements Listener {
                     } else if (!isUp && _Emojinumber == 2) {
                         player.getInventory().setHelmet(createCustomSkull(1, "idk", Collections.singletonList("idk"), "705682eb2f96e76aa7a4e44ae3d54f519f3485f6beedeab0d0d889aaa5e3ecb8"));
                         isUp = true;
+                    }else if  (isUp && _Emojinumber == 3) {
+                        player.getInventory().setHelmet(createCustomSkull(1, "idk", Collections.singletonList("idk"), "6e66deda153ce20abd7652257498cb1616ab61e460960a88ea3307cfe8e48907"));
+                        isUp = false;
+                    } else if (!isUp && _Emojinumber == 3) {
+                        player.getInventory().setHelmet(createCustomSkull(1, "idk", Collections.singletonList("idk"), "66d23e6f231daca64f9c9726de824de93e7f2272202d7fd9e3db1a6298ac08d9"));
+                        isUp = true;
+                    }else if  (isUp && _Emojinumber == 4) {
+                        player.getInventory().setHelmet(createCustomSkull(1, "idk", Collections.singletonList("idk"), "865ef8cc8c6461a7c45203b249d130f066086a9bb80307ecaedae8356800cea4"));
+                        isUp = false;
+                    } else if (!isUp && _Emojinumber == 4) {
+                        player.getInventory().setHelmet(createCustomSkull(1, "idk", Collections.singletonList("idk"), "2ae17e1fabb1c319469b752f7a47165d82242a14dbea756bcc6ac040ee21f21e"));
+                        isUp = true;
+                    }else if  (isUp && _Emojinumber == 5) {
+                        player.getInventory().setHelmet(createCustomSkull(1, "idk", Collections.singletonList("idk"), "42737e99e4c0596a3712e7711baecae8d1ddb774ac1cf531896862380753e16"));
+                        isUp = false;
+                    } else if (!isUp && _Emojinumber == 5) {
+                        player.getInventory().setHelmet(createCustomSkull(1, "idk", Collections.singletonList("idk"), "11952258929188b6549d03a8181228052b0364b986e8d2e9e7c39f7530530fdf"));
+                        isUp = true;
+                    }else if  (isUp && _Emojinumber == 6) {
+                        player.getInventory().setHelmet(createCustomSkull(1, "idk", Collections.singletonList("idk"), "52e98165deef4ed621953921c1ef817dc638af71c1934a4287b69d7a31f6b8"));
+                        isUp = false;
+                    } else if (!isUp && _Emojinumber == 6) {
+                        player.getInventory().setHelmet(createCustomSkull(1, "idk", Collections.singletonList("idk"), "545bd18a2aaf469fad72e52cde6cfb02bfbaa5bfed2a8151277f779ebcdcec1"));
+                        isUp = true;
+                    }else if  (isUp && _Emojinumber == 7) {
+                        player.getInventory().setHelmet(createCustomSkull(1, "idk", Collections.singletonList("idk"), "63611b5724e091854e79926fd11e486bfd0f99042721c3b34177f818639c19d"));
+                        isUp = false;
+                    } else if (!isUp && _Emojinumber == 7) {
+                        player.getInventory().setHelmet(createCustomSkull(1, "idk", Collections.singletonList("idk"), "732fe121a63eaabd99ced6d1acc91798652d1ee8084d2f9127d8a315cad5ce4"));
+                        isUp = true;
+                    }else if  (isUp && _Emojinumber == 8) {
+                        player.getInventory().setHelmet(createCustomSkull(1, "idk", Collections.singletonList("idk"), "2d2175ebe9ae0e1a658d9af82dacfb8369052d8121d4ea3886738a1cca5"));
+                        isUp = false;
+                    } else if (!isUp && _Emojinumber == 8) {
+                        player.getInventory().setHelmet(createCustomSkull(1, "idk", Collections.singletonList("idk"), "285c789b1bafeb6274d5c3314e0333ccf6ab92d7312ef214f89793c959d25"));
+                        isUp = true;
                     }
                 }
             }
