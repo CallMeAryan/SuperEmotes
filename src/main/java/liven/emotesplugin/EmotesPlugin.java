@@ -2,9 +2,11 @@ package liven.emotesplugin;
 
 import liven.emotesplugin.Commands.EmotesCommand;
 import liven.emotesplugin.Utils.RepeatingTask;
+import liven.emotesplugin.Utils.getTexture;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,7 +18,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.util.Vector;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,47 +26,56 @@ import java.util.*;
 import static liven.emotesplugin.Utils.getCustomSkull.createCustomSkull;
 
 public final class EmotesPlugin extends JavaPlugin implements Listener {
-    public static HashMap<String, Boolean> PlayerBoolean = new HashMap<>();
+
+    public static HashMap<UUID, getTexture> PlayerBoolean = new HashMap<>();
+
+
+    public static FileConfiguration conf_emotes;
     public static Dictionary<String, Integer> dic = new Hashtable<>();
-    public static List<UUID> EnabledEmojis = new ArrayList<UUID>();
+    public static List<UUID> EnabledEmojis = new ArrayList<>();
     ItemStack air = new ItemStack(Material.AIR);
 
 
+    
     @Override
     public void onEnable() {
-
         File conf_emotes = new File(getDataFolder(), "Emotes.yml");
-        if (!conf_emotes.exists()) {
+        if (!conf_emotes.exists()){
             try {
                 conf_emotes.createNewFile();
             } catch (IOException e) {
                 getLogger().info("can't load Emotes.yml");
             }
+
+            YamlConfiguration yml_emotes = YamlConfiguration.loadConfiguration(conf_emotes);
+
+            yml_emotes.set("Emotes.1.Texture", "idk");
+
+            try {
+                yml_emotes.save(conf_emotes);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
-        YamlConfiguration yml_emotes = YamlConfiguration.loadConfiguration(conf_emotes);
 
-        yml_emotes.set("Emotes.1.Texture2", "Henlo");
+
+        YamlConfiguration yml_emotes = YamlConfiguration.loadConfiguration(conf_emotes);
         try {
             yml_emotes.save(conf_emotes);
         } catch (IOException e) {
-            getLogger().info("Falied to save Emotes.yml");
+            e.printStackTrace();
         }
-
 
         Bukkit.getPluginManager().registerEvents(this, this);
         getLogger().info(ChatColor.GREEN + "plugin enabled successfully");
         this.getCommand("emotes").setExecutor(new EmotesCommand(this, yml_emotes));
-        String TextureValue;
-        List<String> DisplayLore = new ArrayList<>();
 
 
-        String DisplayName = null;
 
         RepeatingTask repeatingTask = new RepeatingTask(0, 10) {
             @Override
             public void run() {
-
 
                 //loop through all UUIDs present in Array list
 
@@ -76,22 +86,16 @@ public final class EmotesPlugin extends JavaPlugin implements Listener {
 
 
                     if (player != null) {
+                        getTexture idk = PlayerBoolean.get(player.getUniqueId());
 
-                        List<String> lis = (yml_emotes.getStringList("Emotes." + dic.get(player.getDisplayName()) + ".Texture"));
-
-                        if (lis.size() > 0) {
-
-                            if (PlayerBoolean.get(player.getDisplayName())) {
-                                player.getInventory().setHelmet(createCustomSkull(1, "Emote " + dic.get(player.getDisplayName()), Collections.singletonList("em" + player.getUniqueId().toString())
-                                        , lis.get(1)));
-                                PlayerBoolean.put(player.getDisplayName(), false);
-                            } else {
-                                player.getInventory().setHelmet(createCustomSkull(1, "Emote " + dic.get(player.getDisplayName()), Collections.singletonList("em" + player.getUniqueId().toString())
-                                        , lis.get(2)));
-                                PlayerBoolean.put(player.getDisplayName(), true);
-                            }
-
-                        } else {
+                            if (idk != null && idk.getcur() == 1) {
+                                player.getInventory().setHelmet(createCustomSkull(1, "Emote " + dic.get(player.getDisplayName()), Collections.singletonList("em" + player.getUniqueId())
+                                        , idk.getText1()));
+                                idk.setCur(idk.getcur() + 1);
+                            } else if (idk != null && idk.getcur() == 2){
+                                player.getInventory().setHelmet(createCustomSkull(1, "Emote " + dic.get(player.getDisplayName()), Collections.singletonList("em" + player.getUniqueId())
+                                       , idk.getText2()));
+                                idk.setCur(idk.getcur() - 1);
 
                         }
 
@@ -199,7 +203,7 @@ public final class EmotesPlugin extends JavaPlugin implements Listener {
 //
 //                                    if (PlayerBoolean.get(player.getDisplayName())) {
 //                                        player.getInventory().setHelmet(createCustomSkull(1, "Emote " + String.valueOf(dic.get(DisplayName)), Collections.singletonList("em" + player.getUniqueId().toString())
-//                                                , "2d2175ebe9ae0e1a658d9af82dacfb8369052d8121d4ea3886738a1cca5"));
+//                                                , "732fe121a63eaabd99ced6d1acc91798652d1ee8084d2f9127d8a315cad5ce4"));
 //                                        PlayerBoolean.put(player.getDisplayName(), false);
 //                                    } else {
 //                                        player.getInventory().setHelmet(createCustomSkull(1, "Emote " + String.valueOf(dic.get(DisplayName)), Collections.singletonList("em" + player.getUniqueId().toString())
@@ -233,11 +237,10 @@ public final class EmotesPlugin extends JavaPlugin implements Listener {
     public void onJoin(PlayerJoinEvent e) {
 
         Player player = e.getPlayer();
-        Vector playerloc = player.getLocation().toVector();
 
         //sets player bool to true
 
-        PlayerBoolean.put(player.getDisplayName(), true);
+//        PlayerBoolean.put(player.getDisplayName(), true);
 
     }
 
@@ -245,11 +248,10 @@ public final class EmotesPlugin extends JavaPlugin implements Listener {
     public void onPlayerInteract(InventoryClickEvent e) {
 
         Player player = (Player) e.getWhoClicked();
-        String DisplayName = player.getDisplayName();
         ItemStack skull = player.getInventory().getHelmet();
 
 
-        if (skull != null && e.getInventory().getType() == InventoryType.CRAFTING && e.getSlot() == 39 && skull.getItemMeta().getLore().equals(Collections.singletonList("em" + player.getUniqueId().toString()))) {
+        if (skull != null && e.getInventory().getType() == InventoryType.CRAFTING && e.getSlot() == 39 && skull.getItemMeta().getLore().equals(Collections.singletonList("em" + player.getUniqueId()))) {
             e.setCancelled(true);
         }
 

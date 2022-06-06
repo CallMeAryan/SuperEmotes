@@ -1,24 +1,20 @@
 package liven.emotesplugin.Commands;
 
 import liven.emotesplugin.EmotesPlugin;
+import liven.emotesplugin.Utils.getTexture;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-import static liven.emotesplugin.EmotesPlugin.EnabledEmojis;
-import static liven.emotesplugin.EmotesPlugin.dic;
+import static liven.emotesplugin.EmotesPlugin.*;
 
 public class EmotesCommand implements CommandExecutor {
 
@@ -41,24 +37,28 @@ public class EmotesCommand implements CommandExecutor {
 
 
 
+
+
             Set<String> list = conf_emotes.getConfigurationSection("Emotes").getKeys(false);
 
 
             List<String> lis = (conf_emotes.getStringList("Emotes." + args[0] + ".Texture"));
 
 
-            if(args.length == 0 && conf_emotes.contains("Emotes")){
+
+            if(args.length == 1){
 
                 player.sendMessage(ChatColor.GREEN + "Avaliable Emojis: " + list);
-
 
             }
 
             if (args.length == 1 && list.contains(args[0])){
 
                 EnabledEmojis.add(player.getUniqueId());
-                dic.put(player.getDisplayName(), Integer.parseInt(args[0]));
-                player.sendMessage(String.valueOf(dic.get(player.getDisplayName())));
+
+                PlayerBoolean.put(player.getUniqueId(), new getTexture(1, lis.get(1), lis.get(2)));
+
+
 
             }
 
