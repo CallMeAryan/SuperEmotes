@@ -1,4 +1,4 @@
-package liven.emotesplugin.Utils;
+package net.liven.Utils;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
